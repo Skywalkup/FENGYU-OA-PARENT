@@ -1,5 +1,7 @@
 package com.fengyu.auth;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fengyu.auth.mapper.SysRoleMapper;
 import com.fengyu.model.system.SysRole;
 import org.junit.jupiter.api.Test;
@@ -63,5 +65,26 @@ public class TestMapperDemo1 {
     public void testDeleteBatchIds() {
         int result = mapper.deleteBatchIds(Arrays.asList(12, 13));
         System.out.println(result);
+    }
+
+    // 条件查询
+    @Test
+    public void testQuery1() {
+        // 1 创建 QueryWrapper 对象，调用方法封装条件
+        QueryWrapper<SysRole> wrapper = new QueryWrapper<>();
+        wrapper.eq("role_name", "经理");
+        // 2 调用mp方法实现查询操作
+        List<SysRole> list = mapper.selectList(wrapper);
+        System.out.println(list);
+    }
+
+    @Test
+    public void testQuery2() {
+        // 1 创建 QueryWrapper 对象，调用方法封装条件
+        LambdaQueryWrapper<SysRole> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SysRole::getRoleName, "用户");
+        // 2 调用mp方法实现查询操作
+        List<SysRole> list = mapper.selectList(queryWrapper);
+        System.out.println(list);
     }
 }
