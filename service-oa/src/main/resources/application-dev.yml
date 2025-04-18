@@ -10,3 +10,6 @@ spring:
     url: jdbc:mysql://40028-bk7.cdc.k8s:21101/bladex?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8
     username: root
     password: qVo33pJK0aiUx$wj
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
